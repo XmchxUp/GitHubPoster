@@ -10,7 +10,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ['3.11', '3.12']
+        python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -29,7 +29,7 @@ jobs:
           path: ${{ steps.set_variables.outputs.PIP_CACHE }}
           key: ${{ runner.os }}-pip-${{ steps.set_variables.outputs.PY }}
       - name: Install dependencies
-        run:  |
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Run lint
@@ -38,5 +38,6 @@ jobs:
         run: pytest tests/
       - name: Run running tests
         run: |
-           python -m github_poster github --github_user_name yihong0618
-           python -m github_poster multiple --types "github, dota2" --github_user_name piglei --dota2_id 70388657 --year 2018-2022
+          python -m github_poster github --github_user_name xmchxup
+          python -m github_poster bbdc --bbdc_user_id 18532126 --bbdc_type time
+          python -m github_poster bbdc --bbdc_user_id 18532126 --bbdc_type word
