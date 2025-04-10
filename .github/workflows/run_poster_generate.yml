@@ -75,6 +75,12 @@ jobs:
         run: |
           python -m github_poster github --github_user_name ${{ secrets.G_USER_NAME }} --me ${{ env.ME }} --with-animation --stand-with-ukraine
 
+      - name: Run sync bbdk script
+        if: contains(env.TYPE, 'bbdk')
+        run: |
+          python -m github_poster bbdc --bbdc_user_id ${{ secrets.BBDK_ID}} --bbdc_type time
+          python -m github_poster bbdc --bbdc_user_id ${{ secrets.BBDK_ID}} --bbdc_type word
+
       - name: Run sync gitlab script
         if: contains(env.TYPE, 'gitlab')
         run: |
